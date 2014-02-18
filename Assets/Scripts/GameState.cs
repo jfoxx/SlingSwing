@@ -4,7 +4,9 @@ using System.Collections.Generic;
 
 public class GameState : MonoBehaviour
 {
-	
+
+	public static readonly string MAIN_MENU = "main";
+
 	public string currentLevel;
 	public bool showMenu;
 
@@ -32,7 +34,7 @@ public class GameState : MonoBehaviour
 		if (Input.GetKeyDown (KeyCode.Escape)) {
 			showMenu = !showMenu;
 		}
-		if (currentLevel == "main") {
+		if (currentLevel == MAIN_MENU) {
 			Screen.lockCursor = false;
 		} else {
 			Screen.lockCursor = false;
@@ -51,8 +53,7 @@ public class GameState : MonoBehaviour
 
 	public void startState ()
 	{
-		setLevel("main");
-		Application.LoadLevel("main");
+		setLevel(MAIN_MENU);
 	}
 
 	public string getLevel ()

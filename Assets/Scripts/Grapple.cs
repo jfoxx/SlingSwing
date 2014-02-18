@@ -29,6 +29,7 @@ public class Grapple : MonoBehaviour {
 
 
 	void Update () {
+		if(player == null){return;}
 
 		if(Input.touchCount > 0){
 

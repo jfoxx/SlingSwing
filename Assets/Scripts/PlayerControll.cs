@@ -84,6 +84,7 @@ public class PlayerControll : MonoBehaviour
 	{
 		isDead = true;
 		Instantiate(exposionPrefab, transform.position, Quaternion.identity);
+		Debug.Log("died!");
 		manager.SendMessage("OnPlayerDied", SendMessageOptions.DontRequireReceiver);
 		Destroy(gameObject);
 	}

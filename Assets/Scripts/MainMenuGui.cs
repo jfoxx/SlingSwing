@@ -22,9 +22,9 @@ public class MainMenuGui : MonoBehaviour
 
 	void Update ()
 	{
-		height = Screen.height -50;
-		width = 400;
-		top = (Screen.height / 2) - (height/2);
+		height = Screen.height;
+		width = 450;
+		top = 20;
 		left = (Screen.width / 2) - (width/2);
 		
 		menuWindowRect = new Rect (left, top, width, height);
@@ -57,7 +57,7 @@ public class MainMenuGui : MonoBehaviour
 		if (GUILayout.Button ("Level 3"))
 		{
 			Debug.Log ("Moving to level 2");
-			GameState.Instance.setLevel("level2");
+			GameState.Instance.setLevel("level3");
 		}
 	}
 }

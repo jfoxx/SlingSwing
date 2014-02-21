@@ -38,15 +38,12 @@ public class GameManager : MonoBehaviour {
 			playtime += Time.deltaTime;
 		}
 
-		float height = Screen.height / 2;
-     	float width = 400;
+		float height = Screen.height - 50f;
+     	float width = 450;
 		float top = (Screen.height / 2) - (height/2);
 		float left = (Screen.width / 2) - (width/2);
 
-		retryWindowRect = new Rect ((Screen.width / 2) - (width/2), 
-		                            (Screen.height / 2) - (height/2), 
-		                            width, 
-		                            (Screen.height / 2));
+		retryWindowRect = new Rect (left, top, width, height);
 
 	}
 

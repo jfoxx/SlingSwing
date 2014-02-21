@@ -59,7 +59,6 @@ public class HUDFPS : MonoBehaviour
 
 	void OnGUI(){
 		GUI.color = col;
-		GUILayout.Space(50);
 		GUILayout.Label( "fps: " +theFPS );
 
 	}

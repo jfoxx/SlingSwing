@@ -21,6 +21,8 @@ public class LightningBolt : MonoBehaviour
 	
 	void Start()
 	{
+		target = GameObject.FindGameObjectWithTag("Player").transform;
+
 		oneOverZigs = 1f / (float)zigs;
 		particleEmitter.emit = false;
 

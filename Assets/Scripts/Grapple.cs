@@ -23,7 +23,10 @@ public class Grapple : MonoBehaviour {
 
 	void Start () {
 		targetPosition = transform.position;
-		player = GameObject.Find("Player");
+		player = GameObject.FindGameObjectWithTag("Player");
+		if(player == null){
+			Debug.LogError("Player not found!!");
+		}
 		energyField = transform.FindChild("EnergyField");
 	}
 
@@ -98,7 +101,7 @@ public class Grapple : MonoBehaviour {
 	}
 
 	void OnGUI(){
-		GUILayout.Label(myguitext);
-		GUILayout.Label("hitSet = " + hitSet);
+		//GUILayout.Label(myguitext);
+		//GUILayout.Label("hitSet = " + hitSet);
 	}
 }

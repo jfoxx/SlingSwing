@@ -13,10 +13,12 @@ public class PlayerControll : MonoBehaviour
 
 	bool hitSet = false;
 	bool iMustDie = false;
+	bool isFinished = false;
 	bool isDead = false;
 	bool isHurt = false;
 	bool isHurting = false;
 	float maxSpeed = 13;
+	public bool playerStarted = false;
 
 	SpriteRenderer spriteRenderer;
 
@@ -39,6 +41,7 @@ public class PlayerControll : MonoBehaviour
 		iMustDie = false;
 		manager = GameObject.FindGameObjectWithTag("GameManager").transform;
 		health = Health.Full;
+		playerStarted = false;
 
 	}
 
@@ -47,6 +50,11 @@ public class PlayerControll : MonoBehaviour
 		if (TouchExit|| Input.GetMouseButtonUp(0)) {
 			hitSet = false;
 		}
+
+		if(Input.GetMouseButtonDown(0)){
+			playerStarted = true;
+		}
+
 		spring.enabled = hitSet;
 
 		if(iMustDie && !isDead){
@@ -64,6 +72,8 @@ public class PlayerControll : MonoBehaviour
 		}else{
 			spriteRenderer.color = Color.cyan;
 		}
+
+		rigidbody2D.gravityScale = playerStarted ? 1 : 0; 
 
 	}
 
@@ -100,20 +110,25 @@ public class PlayerControll : MonoBehaviour
 		} 
 	}
 
-	void OnCollisionEnter2D (Collision2D coll)
+	void OnCollisionStay2D (Collision2D coll)
 	{
 
-		if( coll.transform.CompareTag("Finish") ){
-			Finish();
-			iMustDie = true;
-		} else {
+		if( !coll.transform.CompareTag("SafeZone") ){
 			if( !isHurt ){
 				isHurting 	= true;
 				isHurt 		= true;
-
 				audio.PlayOneShot(hurt);
 				ReduceHealth();
 			}
+		}
+	}
+
+	void OnTriggerStay2D(Collider2D other){
+
+		Debug.Log("in da trigger " + other.transform.name);
+
+		if(other.transform.CompareTag("Finish")){
+			Finish();
 		}
 	}
 

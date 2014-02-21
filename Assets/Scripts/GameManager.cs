@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour {
 
 	void Start () 
 	{
+
 		state 				= GameState.Instance;
 
 		playerDead 			= false;
@@ -55,9 +56,20 @@ public class GameManager : MonoBehaviour {
 
 	void OnPlayerFinished ()
 	{
-	   if(currentHighScore > playtime || currentHighScore < 1f){
+
+		Pause();
+		playerDead = true;
+	   	if(currentHighScore > playtime || currentHighScore < 1f){
 			PlayerPrefs.SetFloat("HigScore_" + state.currentLevel, playtime);
 		}
+	}
+
+	void Pause(){
+		Time.timeScale = 0f;
+	}
+
+	void unPause(){
+		Time.timeScale = 1f;
 	}
 
 	void Respawn()
@@ -67,8 +79,10 @@ public class GameManager : MonoBehaviour {
 
 	void OnGUI(){
 
+		GUI.skin = skin;
+
 		float height = 40f;
-		float width = 150f;
+		float width = 300f;
 		float top = 30f;
 		float left = (Screen.width / 2) - (width/2);
 
@@ -84,7 +98,6 @@ public class GameManager : MonoBehaviour {
 
 		if(playerDead)
 		{
-			GUI.skin = skin;
 			retryWindowRect = GUI.Window (2, retryWindowRect, windowFunction, "");
 		}
 
@@ -95,6 +108,7 @@ public class GameManager : MonoBehaviour {
 		if (GUILayout.Button ("Respawn"))
 		{
 			Debug.Log ("Reloading level");
+			unPause();
 			GameState.Instance.setLevel(state.currentLevel);
 		}
 
@@ -105,14 +119,6 @@ public class GameManager : MonoBehaviour {
 			Debug.Log ("Moving to main menu");
 			state.setLevel(GameState.MAIN_MENU);
 		}
-
-		//		GUILayout.Space(5);
-		//		
-		//		if (GUILayout.Button ("Level 3"))
-		//		{
-		//			Debug.Log ("Moving to level 3");
-		//			GameState.Instance.setLevel("level3");
-		//		}
 	}
 
 }

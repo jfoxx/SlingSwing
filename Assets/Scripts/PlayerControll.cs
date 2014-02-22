@@ -68,7 +68,7 @@ public class PlayerControll : MonoBehaviour
 
 		if(isHurt){
 			float lerp = Mathf.PingPong(Time.time, 0.2f) / 0.2f;
-			spriteRenderer.color = Color.Lerp(Color.magenta, Color.cyan, lerp);
+			spriteRenderer.color = Color.Lerp(Color.magenta, Color.yellow, lerp);
 		}else{
 			spriteRenderer.color = Color.cyan;
 		}

@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour {
 		currentHighScore 	= PlayerPrefs.GetFloat("HigScore_" + state.currentLevel);
 		string minutesHS 	= Mathf.Floor(currentHighScore / 60).ToString("00");
 		string secondsHS 	= (currentHighScore % 60).ToString("00");
+		unPause();
 	}
 	
 	void Update () {
@@ -84,12 +85,12 @@ public class GameManager : MonoBehaviour {
 		float height = 40f;
 		float width = 300f;
 		float top = 30f;
-		float left = (Screen.width / 2) - (width/2);
+		float left = Screen.width - width;
 
 		string minutes = Mathf.Floor(playtime / 60).ToString("00");
 		string seconds = (playtime % 60).ToString("00");
 
-		GUI.Label(new Rect((Screen.width / 2) - (width/2) , top, width, height), "Time: " + minutes + ":" + seconds );
+		GUI.Label(new Rect(left, top, width, height), "Time: " + minutes + ":" + seconds );
 
 		string minutesHS = Mathf.Floor(currentHighScore / 60).ToString("00");
 		string secondsHS = (currentHighScore % 60).ToString("00");

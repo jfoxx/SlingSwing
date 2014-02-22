@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour {
 
 	public GameState state;
 
+
 	bool gameStarted;
 	bool playerDead = false;
 
@@ -20,8 +21,14 @@ public class GameManager : MonoBehaviour {
 	Rect retryWindowRect;
 	public GUISkin skin;
 
+
+	PlayerControll playerControll;
+	GameObject playerObject;
+
 	void Start () 
 	{
+		playerObject 		= GameObject.FindGameObjectWithTag("Player");
+		playerControll 		= playerObject.GetComponent<PlayerControll>();
 
 		state 				= GameState.Instance;
 
@@ -92,10 +99,14 @@ public class GameManager : MonoBehaviour {
 
 		GUI.Label(new Rect(left, top, width, height), "Time: " + minutes + ":" + seconds );
 
-		string minutesHS = Mathf.Floor(currentHighScore / 60).ToString("00");
-		string secondsHS = (currentHighScore % 60).ToString("00");
+//		string minutesHS = Mathf.Floor(currentHighScore / 60).ToString("00");
+//		string secondsHS = (currentHighScore % 60).ToString("00");
+//
+//		GUI.Label(new Rect(left, top -15, width, height), "High Score: " + minutesHS + ":" + secondsHS );
 
-		GUI.Label(new Rect(left, top -15, width, height), "High Score: " + minutesHS + ":" + secondsHS );
+		GUI.Label(new Rect(0, top -15, width, height), "life: " + (int) playerControll.health);
+
+
 
 		if(playerDead)
 		{

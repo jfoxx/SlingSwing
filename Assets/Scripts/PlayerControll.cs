@@ -4,6 +4,8 @@ using System.Collections;
 public class PlayerControll : MonoBehaviour
 {
 
+	GameState state;
+
 	public Transform manager;
 	public Transform exposionPrefab;
 
@@ -17,17 +19,17 @@ public class PlayerControll : MonoBehaviour
 	bool isDead = false;
 	bool isHurt = false;
 	bool isHurting = false;
-	float maxSpeed = 13;
+	float maxSpeed = 10;
+
 	public bool playerStarted = false;
 
 	SpriteRenderer spriteRenderer;
-
-	public enum Health { Full = 3, Half = 2, Low = 1 }
 
 	public Health health;
 
 	void Start ()
 	{
+		state = GameState.Instance;
 		spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
 		if(spriteRenderer == null){
 			Debug.LogError(" AAAAAAAH!");
@@ -43,6 +45,7 @@ public class PlayerControll : MonoBehaviour
 		health = Health.Full;
 		playerStarted = false;
 
+		maxSpeed = (int) state.currentDifficulty;
 	}
 
 	void Update ()
@@ -77,9 +80,15 @@ public class PlayerControll : MonoBehaviour
 
 	}
 
+
+
 	void FixedUpdate ()
 	{
+
+		;
+
 		rigidbody2D.velocity = Vector2.ClampMagnitude(rigidbody2D.velocity, maxSpeed);
+
 	}
 
 	void StopBeingHurt(){
@@ -136,12 +145,13 @@ public class PlayerControll : MonoBehaviour
 	{
 		Debug.Log(health);
 
-		if (health == Health.Low || (int) health < 1) {
+		health = (Health)((int) health -1);
+
+		if ((int) health < 1) {
 			iMustDie = true;
 		}
-		else {
-			health = (Health)((int) health -1);
-		}
+
+
 	}
 
 	void Die()

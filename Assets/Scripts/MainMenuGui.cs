@@ -59,5 +59,13 @@ public class MainMenuGui : MonoBehaviour
 			Debug.Log ("Moving to level 2");
 			GameState.Instance.setLevel("level3");
 		}
+
+		GUILayout.Space(20);
+
+		if (GUILayout.Button ("Options"))
+		{
+			Debug.Log ("Moving to Options");
+			GameState.Instance.setLevel(GameState.OPTIONS_MENU);
+		}
 	}
 }

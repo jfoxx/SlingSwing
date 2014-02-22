@@ -64,9 +64,10 @@ public class Grapple : MonoBehaviour {
 		}
 
 		// debugging in computer	
-		if (Input.GetMouseButtonDown(0)) {
+		if (Input.GetMouseButtonDown(0)) 
+		{
 			
-		Vector3 touchPos = new Vector3( Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0 );
+			Vector3 touchPos = new Vector3( Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0 );
 			
 			RaycastHit2D hit = Physics2D.Raycast (player.transform.position, (touchPos - player.transform.position).normalized, raycastDistance);
 			

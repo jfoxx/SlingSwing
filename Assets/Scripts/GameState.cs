@@ -6,9 +6,11 @@ public class GameState : MonoBehaviour
 {
 
 	public static readonly string MAIN_MENU = "main";
+	public static readonly string OPTIONS_MENU = "options";
 
 	public string currentLevel;
 	public bool showMenu;
+	public Difficulty currentDifficulty = Difficulty.nOOb;
 
 	private static GameState instance;
 
@@ -24,6 +26,14 @@ public class GameState : MonoBehaviour
 
 	void Start(){
 		DontDestroyOnLoad(instance);
+
+		int savedDifficulty = PlayerPrefs.GetInt("PlayerDifficulty");
+
+		if(savedDifficulty > 9){
+			setDifficulty((Difficulty) savedDifficulty);
+		}else{
+			setDifficulty(Difficulty.nOOb);
+		}
 	}
 
 	void Update ()
@@ -65,6 +75,19 @@ public class GameState : MonoBehaviour
 	{
 		currentLevel = newLevel;
 		Application.LoadLevel(newLevel);
+	}
+
+	public void setDifficulty(Difficulty difficulty)
+	{
+		Debug.Log("setDifficulty " + difficulty);
+		currentDifficulty = difficulty;
+		PlayerPrefs.SetInt("PlayerDifficulty", (int) difficulty);
+	}
+
+	public Difficulty getDifficulty()
+	{
+		return currentDifficulty;
+		Debug.Log("getDifficulty");
 	}
 
 	void OnGUI()

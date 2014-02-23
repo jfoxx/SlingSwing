@@ -64,6 +64,7 @@ public class PlayerControll : MonoBehaviour
 
 		if(Input.GetMouseButtonDown(0)){
 			playerStarted = true;
+			manager.SendMessage("OnPlayerStarted");
 		}
 
 		spring.enabled = hitSet;
@@ -92,11 +93,7 @@ public class PlayerControll : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-
-		;
-
 		rigidbody2D.velocity = Vector2.ClampMagnitude(rigidbody2D.velocity, maxSpeed);
-
 	}
 
 	void StopBeingHurt(){
@@ -172,6 +169,7 @@ public class PlayerControll : MonoBehaviour
 	}
 
 	void Finish(){
+		rigidbody2D.velocity = Vector3.zero;
 		manager.SendMessage("OnPlayerFinished", SendMessageOptions.DontRequireReceiver);
 	}
 

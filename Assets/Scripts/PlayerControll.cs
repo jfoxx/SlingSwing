@@ -42,7 +42,15 @@ public class PlayerControll : MonoBehaviour
 		spring.connectedBody = GameObject.FindGameObjectWithTag("GrapplePoint").rigidbody2D;
 		iMustDie = false;
 		manager = GameObject.FindGameObjectWithTag("GameManager").transform;
-		health = Health.Full;
+
+		if(state.currentDifficulty == Difficulty.Expert){
+			health = Health.Low;
+		}
+		else{
+			health = Health.Full;
+		}
+
+
 		playerStarted = false;
 
 		maxSpeed = (int) state.currentDifficulty;
@@ -169,10 +177,10 @@ public class PlayerControll : MonoBehaviour
 
 	void OnGUI()
 	{
-		GUI.Label(new Rect(5, 300, 200, 50), "Velocity: " + rigidbody2D.velocity.magnitude);
-		GUILayout.Space(50);
-		GUILayout.Label("hurt: " + isHurt);
-		GUILayout.Label("hurting: " + isHurting);
+//		GUI.Label(new Rect(5, 300, 200, 50), "Velocity: " + rigidbody2D.velocity.magnitude);
+//		GUILayout.Space(50);
+//		GUILayout.Label("hurt: " + isHurt);
+//		GUILayout.Label("hurting: " + isHurting);
 	}
 
 }

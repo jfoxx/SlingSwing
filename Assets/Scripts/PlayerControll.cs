@@ -8,6 +8,7 @@ public class PlayerControll : MonoBehaviour
 
 	public Transform manager;
 	public Transform exposionPrefab;
+	public GUISkin skin;
 
 	private AudioSource audioSource;
 	public AudioClip hurt;
@@ -24,34 +25,34 @@ public class PlayerControll : MonoBehaviour
 	public bool playerStarted = false;
 
 	SpriteRenderer spriteRenderer;
+	Color playerDefaultColor;
 
 	public Health health;
 
 	void Start ()
 	{
-		state = GameState.Instance;
-		spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
-		if(spriteRenderer == null){
-			Debug.LogError(" AAAAAAAH!");
-		}
-
-		audioSource = GetComponent<AudioSource> ();
-
-		spring = GetComponent<SpringJoint2D> ();
-		spring.enabled = false;
-		spring.connectedBody = GameObject.FindGameObjectWithTag("GrapplePoint").rigidbody2D;
-		iMustDie = false;
+		state 	= GameState.Instance;
 		manager = GameObject.FindGameObjectWithTag("GameManager").transform;
 
-		if(state.currentDifficulty == Difficulty.Expert){
+
+		spriteRenderer 	= gameObject.GetComponentInChildren<SpriteRenderer>();
+		audioSource 	= GetComponent<AudioSource> ();
+		playerDefaultColor 	= spriteRenderer.color;
+
+		spring 					= GetComponent<SpringJoint2D> ();
+		spring.enabled 			= false;
+		spring.connectedBody 	= GameObject.FindGameObjectWithTag("GrapplePoint").rigidbody2D;
+
+		iMustDie 				= false;
+		playerStarted 			= false;
+		rigidbody2D.isKinematic = true;
+
+		if(state.currentDifficulty == Difficulty.Expert) {
 			health = Health.Low;
 		}
-		else{
+		else {
 			health = Health.Full;
 		}
-
-
-		playerStarted = false;
 
 		maxSpeed = (int) state.currentDifficulty;
 	}
@@ -64,6 +65,7 @@ public class PlayerControll : MonoBehaviour
 
 		if(Input.GetMouseButtonDown(0)){
 			playerStarted = true;
+			rigidbody2D.isKinematic = false;
 			manager.SendMessage("OnPlayerStarted");
 		}
 
@@ -81,15 +83,8 @@ public class PlayerControll : MonoBehaviour
 		if(isHurt){
 			float lerp = Mathf.PingPong(Time.time, 0.2f) / 0.2f;
 			spriteRenderer.color = Color.Lerp(Color.magenta, Color.yellow, lerp);
-		}else{
-			spriteRenderer.color = Color.cyan;
 		}
-
-		rigidbody2D.gravityScale = playerStarted ? 1 : 0; 
-
 	}
-
-
 
 	void FixedUpdate ()
 	{
@@ -98,6 +93,7 @@ public class PlayerControll : MonoBehaviour
 
 	void StopBeingHurt(){
 		isHurt = false;
+		spriteRenderer.color = playerDefaultColor;
 	}
 
 	void OnHitSet()
@@ -156,7 +152,6 @@ public class PlayerControll : MonoBehaviour
 			iMustDie = true;
 		}
 
-
 	}
 
 	void Die()
@@ -168,14 +163,23 @@ public class PlayerControll : MonoBehaviour
 		Destroy(gameObject);
 	}
 
-	void Finish(){
+	void Finish()
+	{
 		rigidbody2D.velocity = Vector3.zero;
 		manager.SendMessage("OnPlayerFinished", SendMessageOptions.DontRequireReceiver);
+		FreezePlayer();
+	}
+
+	void FreezePlayer()
+	{
+		rigidbody2D.isKinematic = true;
+		enabled = false;
 	}
 
 	void OnGUI()
 	{
-//		GUI.Label(new Rect(5, 300, 200, 50), "Velocity: " + rigidbody2D.velocity.magnitude);
+		GUI.skin = skin;
+		GUI.Label(new Rect(5, 300, 200, 50), "Velocity: " + rigidbody2D.velocity.magnitude);
 //		GUILayout.Space(50);
 //		GUILayout.Label("hurt: " + isHurt);
 //		GUILayout.Label("hurting: " + isHurting);

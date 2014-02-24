@@ -3,20 +3,16 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
-
 	public GameState state;
 
-
-	bool gameStarted;
 	bool playerDead 	= false;
 	bool playerFinished = false;
 	bool playerStarted 	= false;
 
 	float respawnTime 	= 2f;
+	float playtime 		= 0f;
 
 	int playerScore 	= 0;
-
-	float playtime 		= 0f;
 
 	float currentHighScore = 0f;
 
@@ -35,6 +31,7 @@ public class GameManager : MonoBehaviour {
 
 		playerDead 			= false;
 		playerFinished		= false;
+		playerStarted 		= false;
 
 		playtime 			= 0f;
 
@@ -66,6 +63,7 @@ public class GameManager : MonoBehaviour {
 	void OnPlayerDied ()
 	{
 		playerDead = true;
+		Invoke("Respawn", 1);
 	}
 
 	void OnPlayerFinished ()
@@ -106,30 +104,23 @@ public class GameManager : MonoBehaviour {
 		float top = 15f;
 		float left = Screen.width - width;
 
-		string minutes = Mathf.Floor(playtime / 60).ToString("00");
-		string seconds = (playtime % 60).ToString("00");
-
-		GUI.Label(new Rect(left /2 , top, width, height), "Time: " + minutes + ":" + seconds );
-
-//		string minutesHS = Mathf.Floor(currentHighScore / 60).ToString("00");
-//		string secondsHS = (currentHighScore % 60).ToString("00");
-//
-//		GUI.Label(new Rect(left, top -15, width, height), "High Score: " + minutesHS + ":" + secondsHS );
+		GUI.Label(new Rect(left /2 , top, width, height), "Time: " + PlayTime() );
 
 		GUI.Label(new Rect(0, top, width, height), "life: " + (int) playerControll.health);
 
-
-
-		if(playerDead)
+		if(playerFinished)
 		{
 			retryWindowRect = GUI.Window (2, retryWindowRect, windowFunction, "");
 		}
-
 	}
-	
+
 	void windowFunction (int windowID)
 	{
-		if (GUILayout.Button ("Respawn"))
+
+
+
+		GUILayout.Label("High Score: " + PlayTime() );
+		if (GUILayout.Button ("Retry"))
 		{
 			Debug.Log ("Reloading level");
 			unPause();
@@ -143,6 +134,13 @@ public class GameManager : MonoBehaviour {
 			Debug.Log ("Moving to main menu");
 			state.setLevel(GameState.MAIN_MENU);
 		}
+	}
+
+	string PlayTime()
+	{
+		string minutes = Mathf.Floor(playtime / 60).ToString("00");
+		string seconds = (playtime % 60).ToString("00");
+		return minutes + ":" + seconds;
 	}
 
 }

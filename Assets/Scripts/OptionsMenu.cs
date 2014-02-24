@@ -54,7 +54,7 @@ public class OptionsMenu : MonoBehaviour {
 		
 		if (GUILayout.Button ("Back to Menu"))
 		{
-			state.setLevel(GameState.MAIN_MENU);
+			state.SetLevel(GameState.MAIN_MENU);
 		}
 	}
 
@@ -62,32 +62,40 @@ public class OptionsMenu : MonoBehaviour {
 	{
 		if (GUILayout.Button ("nOOb"))
 		{
-			state.setDifficulty(Difficulty.nOOb);
+			state.SetDifficulty(Difficulty.nOOb);
 			difficultyMenu = false;
+
+			state.SetLevel(GameState.MAIN_MENU);
 		}
 
 		GUILayout.Space(space);
 
 		if (GUILayout.Button ("Normal"))
 		{
-			state.setDifficulty(Difficulty.Normal);
+			state.SetDifficulty(Difficulty.Normal);
 			difficultyMenu = false;
+
+			state.SetLevel(GameState.MAIN_MENU);
 		}
 
 		GUILayout.Space(space);
 
 		if (GUILayout.Button ("Hard"))
 		{
-			state.setDifficulty(Difficulty.Hard);
+			state.SetDifficulty(Difficulty.Hard);
 			difficultyMenu = false;
+
+			state.SetLevel(GameState.MAIN_MENU);
 		}
 
 		GUILayout.Space(space);
 
 		if (GUILayout.Button ("Expert"))
 		{
-			state.setDifficulty(Difficulty.Expert);
+			state.SetDifficulty(Difficulty.Expert);
 			difficultyMenu = false;
+
+			state.SetLevel(GameState.MAIN_MENU);
 		}
 
 		GUILayout.Space(space);
@@ -95,7 +103,7 @@ public class OptionsMenu : MonoBehaviour {
 		if (GUILayout.Button ("Back to Menu"))
 		{
 			Debug.Log ("Moving to main menu");
-			state.setLevel(GameState.MAIN_MENU);
+			state.SetLevel(GameState.MAIN_MENU);
 		}
 	}
 }

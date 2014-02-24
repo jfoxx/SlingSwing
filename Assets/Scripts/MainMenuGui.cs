@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class MainMenuGui : MonoBehaviour
@@ -41,7 +41,7 @@ public class MainMenuGui : MonoBehaviour
 		if (GUILayout.Button ("Level 1"))
 		{
 			Debug.Log ("Moving to level 2");
-			GameState.Instance.setLevel("level1");
+			GameState.Instance.SetLevel("level1");
 		}
 
 		GUILayout.Space(20);
@@ -49,7 +49,7 @@ public class MainMenuGui : MonoBehaviour
 		if (GUILayout.Button ("Level 2"))
 		{
 			Debug.Log ("Moving to level 2");
-			GameState.Instance.setLevel("level2");
+			GameState.Instance.SetLevel("level2");
 		}
 
 		GUILayout.Space(20);
@@ -57,7 +57,7 @@ public class MainMenuGui : MonoBehaviour
 		if (GUILayout.Button ("Level 3"))
 		{
 			Debug.Log ("Moving to level 2");
-			GameState.Instance.setLevel("level3");
+			GameState.Instance.SetLevel("level3");
 		}
 
 		GUILayout.Space(20);
@@ -65,7 +65,7 @@ public class MainMenuGui : MonoBehaviour
 		if (GUILayout.Button ("Options"))
 		{
 			Debug.Log ("Moving to Options");
-			GameState.Instance.setLevel(GameState.OPTIONS_MENU);
+			GameState.Instance.SetLevel(GameState.OPTIONS_MENU);
 		}
 	}
 }

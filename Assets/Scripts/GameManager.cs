@@ -16,8 +16,11 @@ public class GameManager : MonoBehaviour {
 
 	float currentHighScore = 0f;
 
-	Rect retryWindowRect;
+	Rect windowRect;
 	public GUISkin skin;
+	public GUISkin hamburgerSkin;
+
+	bool showMenu 		= false;
 
 	PlayerControll playerControll;
 	GameObject playerObject;
@@ -33,6 +36,7 @@ public class GameManager : MonoBehaviour {
 		playerFinished		= false;
 		playerStarted 		= false;
 
+
 		playtime 			= 0f;
 
 		currentHighScore 	= PlayerPrefs.GetFloat("HigScore_" + state.currentLevel);
@@ -42,16 +46,20 @@ public class GameManager : MonoBehaviour {
 	
 	void Update () {
 
-		if(!playerDead && !playerFinished && playerStarted){
+		if(!playerDead && !playerFinished && playerStarted)
+		{
 			playtime += Time.deltaTime;
 		}
 
-		float height 	= Screen.height - 50f;
-     	float width 	= 450;
-		float top 		= (Screen.height / 2) - (height/2);
-		float left 		= (Screen.width / 2) - (width/2);
+		if(showMenu || playerDead || playerFinished)
+		{
+			float height 	= Screen.height - 50f;
+	     	float width 	= 450;
+			float top 		= (Screen.height / 2) - (height/2);
+			float left 		= (Screen.width / 2) - (width/2);
 
-		retryWindowRect = new Rect (left, top, width, height);
+			windowRect = new Rect (left, top, width, height);
+		}
 
 	}
 
@@ -108,21 +116,51 @@ public class GameManager : MonoBehaviour {
 		float top = 15f;
 		float left = Screen.width - width;
 
-		GUI.Label(new Rect(left /2 , top, width, height), "Time: " + PlayTime() );
+		GUI.Label(new Rect(left , top, width, height), "Time: " + PlayTime() );
 
-		GUI.Label(new Rect(0, top, width, height), "life: " + (int) playerControll.health);
+		GUI.Label(new Rect(left/2, top, width, height), "life: " + (int) playerControll.health);
+
 
 		if(playerFinished)
 		{
-			retryWindowRect = GUI.Window (2, retryWindowRect, windowFunction, "");
+			windowRect = GUI.Window (2, windowRect, RetryWndow, "");
+		}
+
+		if(showMenu) {
+			windowRect = GUI.Window (1, windowRect, MenuWindow, "asasd");
+			Pause();
+		}
+
+		GUI.skin = hamburgerSkin;
+		if(GUI.Button(new Rect(20, 20, 70, 70), "")){
+			showMenu = !showMenu;
+			if(showMenu){
+				Pause();
+			} else {
+				unPause();
+			}
 		}
 	}
 
-	void windowFunction (int windowID)
+	void MenuWindow (int windowID)
 	{
+		if (GUILayout.Button ("Resume"))
+		{
+			showMenu = false;
+			unPause();
+		}
 
+		GUILayout.Space(20);
 
+		if (GUILayout.Button ("Back to Menu"))
+		{
+			Debug.Log ("Moving to main menu");
+			state.SetLevel(GameState.MAIN_MENU);
+		}
+	}
 
+	void RetryWndow (int windowID)
+	{
 		GUILayout.Label("High Score: " + PlayTime() );
 		if (GUILayout.Button ("Retry"))
 		{

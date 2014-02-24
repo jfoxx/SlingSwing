@@ -12,6 +12,7 @@ public class PlayerControll : MonoBehaviour
 
 	private AudioSource audioSource;
 	public AudioClip hurt;
+	public AudioClip bump;
 	public SpringJoint2D spring;
 
 	bool hitSet = false;
@@ -120,10 +121,12 @@ public class PlayerControll : MonoBehaviour
 		} 
 	}
 
-	void OnCollisionStay2D (Collision2D coll)
+	void OnCollisionEnter2D (Collision2D coll)
 	{
 
-		if( !coll.transform.CompareTag("SafeZone") ){
+		if(coll.transform.CompareTag("SafeZone") ){
+			audio.PlayOneShot(bump);
+		} else {
 			if( !isHurt ){
 				isHurting 	= true;
 				isHurt 		= true;

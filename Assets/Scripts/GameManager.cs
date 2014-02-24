@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour {
 
 	void OnPlayerFinished ()
 	{
-		Invoke("GoToMainMenu", 3);
+		Invoke("GoToNextLevel", 3);
 		playerFinished = true;
 	   	if(currentHighScore > playtime || currentHighScore < 1f){
 			PlayerPrefs.SetFloat("HigScore_" + state.currentLevel, playtime);
@@ -78,8 +78,12 @@ public class GameManager : MonoBehaviour {
 	void GoToMainMenu()
 	{
 		Debug.Log("GoToManMenu");
-		state.setLevel(GameState.MAIN_MENU);
+		state.SetLevel(GameState.MAIN_MENU);
+	}
 
+	void GoToNextLevel()
+	{
+		state.GoToNextLevel();
 	}
 
 	void Pause(){
@@ -92,7 +96,7 @@ public class GameManager : MonoBehaviour {
 
 	void Respawn()
 	{
-		state.setLevel(state.currentLevel);
+		state.SetLevel(state.currentLevel);
 	}
 
 	void OnGUI(){
@@ -124,7 +128,7 @@ public class GameManager : MonoBehaviour {
 		{
 			Debug.Log ("Reloading level");
 			unPause();
-			GameState.Instance.setLevel(state.currentLevel);
+			GameState.Instance.SetLevel(state.currentLevel);
 		}
 
 		GUILayout.Space(20);
@@ -132,7 +136,7 @@ public class GameManager : MonoBehaviour {
 		if (GUILayout.Button ("Back to Menu"))
 		{
 			Debug.Log ("Moving to main menu");
-			state.setLevel(GameState.MAIN_MENU);
+			state.SetLevel(GameState.MAIN_MENU);
 		}
 	}
 

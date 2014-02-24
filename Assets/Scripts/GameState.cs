@@ -30,9 +30,9 @@ public class GameState : MonoBehaviour
 		int savedDifficulty = PlayerPrefs.GetInt("PlayerDifficulty");
 
 		if(savedDifficulty > 9){
-			setDifficulty((Difficulty) savedDifficulty);
+			SetDifficulty((Difficulty) savedDifficulty);
 		}else{
-			setDifficulty(Difficulty.nOOb);
+			SetDifficulty(Difficulty.nOOb);
 		}
 	}
 
@@ -54,6 +54,7 @@ public class GameState : MonoBehaviour
 
 	void OnLevelWasLoaded(){
 		showMenu = false;
+		currentLevel = Application.loadedLevelName;
 	}
 	// Sets the instance to null when the application quits
 	public void OnApplicationQuit ()
@@ -63,21 +64,31 @@ public class GameState : MonoBehaviour
 
 	public void startState ()
 	{
-		setLevel(MAIN_MENU);
+		SetLevel(MAIN_MENU);
 	}
 
-	public string getLevel ()
+	public string GetLevel ()
 	{
 		return currentLevel;
 	}
 
-	public void setLevel (string newLevel)
+	public void SetLevel (string newLevel)
 	{
 		currentLevel = newLevel;
 		Application.LoadLevel(newLevel);
 	}
+	
+	public void GoToNextLevel()
+	{
+		if(Application.levelCount -1 >= Application.loadedLevel +1)
+		{
+			Application.LoadLevel(Application.loadedLevel + 1); 
+		} else {
+			SetLevel(GameState.MAIN_MENU);
+		}
+	}
 
-	public void setDifficulty(Difficulty difficulty)
+	public void SetDifficulty(Difficulty difficulty)
 	{
 		Debug.Log("setDifficulty " + difficulty);
 		currentDifficulty = difficulty;

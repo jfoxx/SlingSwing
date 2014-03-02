@@ -1,0 +1,121 @@
+fileFormatVersion: 2
+guid: 4761e2f0685b54dbc979f53396354f2f
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: iPhone
+    maxTextureSize: 1024
+    textureFormat: -3
+    compressionQuality: 50
+  spriteSheet:
+    sprites:
+    - name: Sprites_0
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 675
+        width: 50
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Sprites_1
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 925
+        width: 300
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Sprites_2
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 675
+        width: 300
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Sprites_3
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 869
+        width: 111
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Sprites_4
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 800
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Sprites_5
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 750
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Sprites_6
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 725
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Sprites_7
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 570
+        width: 300
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+  spritePackingTag: 
+  userData: 

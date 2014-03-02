@@ -29,11 +29,7 @@ public class GameState : MonoBehaviour
 
 		int savedDifficulty = PlayerPrefs.GetInt("PlayerDifficulty");
 
-		if(savedDifficulty > 9){
-			SetDifficulty((Difficulty) savedDifficulty);
-		}else{
-			SetDifficulty(Difficulty.nOOb);
-		}
+		SetDifficulty(Difficulty.Expert);
 	}
 
 	void Update ()

@@ -49,8 +49,22 @@ public class OptionsMenu : MonoBehaviour {
 		{
 			difficultyMenu = true;
 		}
-		
-		GUILayout.Space(30);
+
+		GUILayout.Space(space);
+
+		if (GUILayout.Button ("Sound"))
+		{
+
+		}
+
+		GUILayout.Space(space);
+
+		if (GUILayout.Button ("Theme"))
+		{
+
+		}
+
+		GUILayout.FlexibleSpace();
 		
 		if (GUILayout.Button ("Back to Menu"))
 		{
@@ -80,16 +94,6 @@ public class OptionsMenu : MonoBehaviour {
 
 		GUILayout.Space(space);
 
-		if (GUILayout.Button ("Hard"))
-		{
-			state.SetDifficulty(Difficulty.Hard);
-			difficultyMenu = false;
-
-			state.SetLevel(GameState.MAIN_MENU);
-		}
-
-		GUILayout.Space(space);
-
 		if (GUILayout.Button ("Expert"))
 		{
 			state.SetDifficulty(Difficulty.Expert);
@@ -98,7 +102,7 @@ public class OptionsMenu : MonoBehaviour {
 			state.SetLevel(GameState.MAIN_MENU);
 		}
 
-		GUILayout.Space(space);
+		GUILayout.FlexibleSpace();
 		
 		if (GUILayout.Button ("Back to Menu"))
 		{

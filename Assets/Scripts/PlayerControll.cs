@@ -21,7 +21,7 @@ public class PlayerControll : MonoBehaviour
 	bool isDead = false;
 	bool isHurt = false;
 	bool isHurting = false;
-	float maxSpeed = 10;
+	float maxSpeed = 100;
 
 	public bool playerStarted = false;
 
@@ -55,7 +55,7 @@ public class PlayerControll : MonoBehaviour
 			health = Health.Full;
 		}
 
-		maxSpeed = (int) state.currentDifficulty;
+		maxSpeed = (int) Difficulty.Expert;
 	}
 
 	void Update ()
@@ -123,23 +123,36 @@ public class PlayerControll : MonoBehaviour
 
 	void OnCollisionEnter2D (Collision2D coll)
 	{
-
-		if(coll.transform.CompareTag("SafeZone") ){
-			audio.PlayOneShot(bump);
-		} else {
-			if( !isHurt ){
+		if(coll.transform.CompareTag("Self")){return;}
+		if(coll.transform.CompareTag("KillZone")  )
+		{
+			if( !isHurt)
+			{
 				isHurting 	= true;
 				isHurt 		= true;
 				audio.PlayOneShot(hurt);
 				ReduceHealth();
 			}
+		} else {
+			audio.PlayOneShot(bump);
 		}
 	}
 
-	void OnTriggerStay2D(Collider2D other){
+	void OnTriggerStay2D(Collider2D other)
+	{
 
 		Debug.Log("in da trigger " + other.transform.name);
 
+		if(other.transform.CompareTag("Finish")){
+			Finish();
+		}
+	}
+
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		
+		Debug.Log("in da trigger " + other.transform.name);
+		
 		if(other.transform.CompareTag("Finish")){
 			Finish();
 		}
@@ -182,7 +195,11 @@ public class PlayerControll : MonoBehaviour
 	void OnGUI()
 	{
 		GUI.skin = skin;
-		GUI.Label(new Rect(5, 300, 200, 50), "Velocity: " + rigidbody2D.velocity.magnitude);
+		float vel = rigidbody2D.velocity.magnitude;
+		if(vel < 0.5f){
+			vel = 0;
+		}
+		GUI.Label(new Rect(5, 300, 200, 50), "Velocity: " + vel);
 //		GUILayout.Space(50);
 //		GUILayout.Label("hurt: " + isHurt);
 //		GUILayout.Label("hurting: " + isHurting);

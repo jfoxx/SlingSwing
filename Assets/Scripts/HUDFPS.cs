@@ -57,10 +57,10 @@ public class HUDFPS : MonoBehaviour
 		}
 	}
 
-//	void OnGUI(){
-//		GUI.color = col;
-//		GUILayout.Label( "fps: " +theFPS );
-//
-//	}
+	void OnGUI(){
+		GUI.color = col;
+		GUILayout.Label( "fps: " +theFPS );
+
+	}
 
 }

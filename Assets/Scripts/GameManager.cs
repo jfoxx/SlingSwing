@@ -118,7 +118,7 @@ public class GameManager : MonoBehaviour {
 
 		GUI.Label(new Rect(left , top, width, height), "Time: " + PlayTime() );
 
-		GUI.Label(new Rect(left/2, top, width, height), "life: " + (int) playerControll.health);
+//		GUI.Label(new Rect(left/2, top, width, height), "life: " + (int) playerControll.health);
 
 
 		if(playerFinished)
@@ -127,12 +127,13 @@ public class GameManager : MonoBehaviour {
 		}
 
 		if(showMenu) {
-			windowRect = GUI.Window (1, windowRect, MenuWindow, "asasd");
+			windowRect = GUI.Window (1, windowRect, MenuWindow, "Menu");
 			Pause();
 		}
 
 		GUI.skin = hamburgerSkin;
-		if(GUI.Button(new Rect(20, 20, 70, 70), "")){
+		if(GUI.Button(new Rect(0, 0, 80, 80), ""))
+		{
 			showMenu = !showMenu;
 			if(showMenu){
 				Pause();
@@ -152,7 +153,14 @@ public class GameManager : MonoBehaviour {
 
 		GUILayout.Space(20);
 
-		if (GUILayout.Button ("Back to Menu"))
+		if (GUILayout.Button ("Options"))
+		{
+			state.SetLevel(GameState.OPTIONS_MENU);
+		}
+		
+		GUILayout.FlexibleSpace();
+
+		if (GUILayout.Button ("Exit"))
 		{
 			Debug.Log ("Moving to main menu");
 			state.SetLevel(GameState.MAIN_MENU);
@@ -169,7 +177,7 @@ public class GameManager : MonoBehaviour {
 			GameState.Instance.SetLevel(state.currentLevel);
 		}
 
-		GUILayout.Space(20);
+		GUILayout.FlexibleSpace();
 
 		if (GUILayout.Button ("Back to Menu"))
 		{

@@ -24,10 +24,10 @@ public class MainMenuGui : MonoBehaviour
 	{
 		height = Screen.height;
 		width = 450;
-		top = 20;
+		top = 0;
 		left = (Screen.width / 2) - (width/2);
 		
-		menuWindowRect = new Rect (left, top, width, height);
+		menuWindowRect = new Rect (0, top, width, height);
 	}
 
 	void OnGUI ()
@@ -61,6 +61,14 @@ public class MainMenuGui : MonoBehaviour
 		}
 
 		GUILayout.Space(20);
+		
+		if (GUILayout.Button ("Bonce!"))
+		{
+			Debug.Log ("Moving to level 2");
+			GameState.Instance.SetLevel("level4");
+		}
+
+		GUILayout.FlexibleSpace();
 
 		if (GUILayout.Button ("Options"))
 		{

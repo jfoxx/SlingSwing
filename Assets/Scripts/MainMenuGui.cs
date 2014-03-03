@@ -24,7 +24,7 @@ public class MainMenuGui : MonoBehaviour
 	{
 		height = Screen.height;
 		width = 450;
-		top = 0;
+		top = 1;
 		left = (Screen.width / 2) - (width/2);
 		
 		menuWindowRect = new Rect (0, top, width, height);

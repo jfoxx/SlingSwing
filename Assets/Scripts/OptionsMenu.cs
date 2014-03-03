@@ -22,7 +22,7 @@ public class OptionsMenu : MonoBehaviour {
 		float height = Screen.height;
 		float width = 450f;
 		float top = 0f;
-		float left = 0;//(Screen.width / 2) - (width/2);
+		float left = 1f;//(Screen.width / 2) - (width/2);
 		
 		optionsWindowRect = new Rect (left, top, width, height);
 	

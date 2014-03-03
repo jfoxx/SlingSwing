@@ -199,7 +199,8 @@ public class PlayerControll : MonoBehaviour
 		if(vel < 0.5f){
 			vel = 0;
 		}
-		GUI.Label(new Rect(5, 300, 200, 50), "Velocity: " + vel);
+		float center = (Screen.width / 2) - 160;
+		GUI.Label(new Rect(center, 0, 350, 50), "Velocity: " + vel.ToString("F0"));
 //		GUILayout.Space(50);
 //		GUILayout.Label("hurt: " + isHurt);
 //		GUILayout.Label("hurting: " + isHurting);

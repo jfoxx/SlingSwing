@@ -7,7 +7,7 @@ public class RingParticle : MonoBehaviour {
 
 	void Start () 
 	{
-		float rand = Random.Range( 0.1f, 1f );
+		float rand = Random.Range( 0.1f, 0.8f );
 
 		transform.localScale = new Vector3(rand,rand,rand);
 

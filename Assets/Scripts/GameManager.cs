@@ -71,12 +71,11 @@ public class GameManager : MonoBehaviour {
 	void OnPlayerDied ()
 	{
 		playerDead = true;
-		Invoke("Respawn", 1);
+		Invoke("Respawn", 1f);
 	}
 
 	void OnPlayerFinished ()
 	{
-		Invoke("GoToNextLevel", 3);
 		playerFinished = true;
 	   	if(currentHighScore > playtime || currentHighScore < 1f){
 			PlayerPrefs.SetFloat("HigScore_" + state.currentLevel, playtime);
@@ -112,7 +111,7 @@ public class GameManager : MonoBehaviour {
 		GUI.skin = skin;
 
 		float height = 50f;
-		float width = 160f;
+		float width = 300f;
 		float top = 15f;
 		float left = Screen.width - width;
 
@@ -127,7 +126,7 @@ public class GameManager : MonoBehaviour {
 		}
 
 		if(showMenu) {
-			windowRect = GUI.Window (1, windowRect, MenuWindow, "Menu");
+			windowRect = GUI.Window (1, windowRect, MenuWindow, "");
 			Pause();
 		}
 
@@ -175,6 +174,12 @@ public class GameManager : MonoBehaviour {
 			Debug.Log ("Reloading level");
 			unPause();
 			GameState.Instance.SetLevel(state.currentLevel);
+		}
+
+		if (GUILayout.Button ("Next"))
+		{
+			Debug.Log ("Next level");
+			GoToNextLevel();
 		}
 
 		GUILayout.FlexibleSpace();

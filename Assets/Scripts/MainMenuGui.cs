@@ -14,6 +14,7 @@ public class MainMenuGui : MonoBehaviour
 
 	public GUISkin skin;
 
+	float space = 0;
 
 	void Start ()
 	{
@@ -44,7 +45,7 @@ public class MainMenuGui : MonoBehaviour
 			GameState.Instance.SetLevel("level1");
 		}
 
-		GUILayout.Space(20);
+		GUILayout.Space(space);
 
 		if (GUILayout.Button ("Level 2"))
 		{
@@ -52,7 +53,7 @@ public class MainMenuGui : MonoBehaviour
 			GameState.Instance.SetLevel("level2");
 		}
 
-		GUILayout.Space(20);
+		GUILayout.Space(space);
 
 		if (GUILayout.Button ("Level 3"))
 		{
@@ -60,7 +61,7 @@ public class MainMenuGui : MonoBehaviour
 			GameState.Instance.SetLevel("level3");
 		}
 
-		GUILayout.Space(20);
+		GUILayout.Space(space);
 		
 		if (GUILayout.Button ("Bonce!"))
 		{

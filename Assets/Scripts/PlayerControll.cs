@@ -21,7 +21,7 @@ public class PlayerControll : MonoBehaviour
 	bool isDead = false;
 	bool isHurt = false;
 	bool isHurting = false;
-	float maxSpeed = 100;
+	float maxSpeed = 50;
 
 	public bool playerStarted = false;
 
@@ -55,7 +55,7 @@ public class PlayerControll : MonoBehaviour
 			health = Health.Full;
 		}
 
-		maxSpeed = (int) Difficulty.Expert;
+//		maxSpeed = (int)GameState.Instance.currentDifficulty;
 	}
 
 	void Update ()

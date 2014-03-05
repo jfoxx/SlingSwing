@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour {
 
 		float height = 50f;
 		float width = 300f;
-		float top = 15f;
+		float top = 0f;
 		float left = Screen.width - width;
 
 		GUI.Label(new Rect(left , top, width, height), "Time: " + PlayTime() );
@@ -168,7 +168,11 @@ public class GameManager : MonoBehaviour {
 
 	void RetryWndow (int windowID)
 	{
-		GUILayout.Label("High Score: " + PlayTime() );
+		GUILayout.Label("Time:\t" + PlayTime() );
+		GUILayout.Space(0);
+		GUILayout.Label("Best:\t\t" + HighScore() );
+
+
 		if (GUILayout.Button ("Retry"))
 		{
 			Debug.Log ("Reloading level");
@@ -191,11 +195,18 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	string PlayTime()
+	private string PlayTime()
 	{
 		string minutes = Mathf.Floor(playtime / 60).ToString("00");
 		string seconds = (playtime % 60).ToString("00");
 		return minutes + ":" + seconds;
 	}
 
+	private string HighScore()
+	{
+		string minutes = Mathf.Floor(currentHighScore / 60).ToString("00");
+		string seconds = (currentHighScore % 60).ToString("00");
+		return minutes + ":" + seconds;
+	}
+	
 }

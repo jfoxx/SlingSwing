@@ -11,7 +11,7 @@ public class OptionsMenu : MonoBehaviour {
 
 	public GUISkin skin;
 
-	public float space = 20f;
+	public float space = 0f;
 
 	void Start () {
 		state = GameState.Instance;

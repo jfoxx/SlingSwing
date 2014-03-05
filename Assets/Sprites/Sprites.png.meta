@@ -23,7 +23,7 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 1024
   textureSettings:
-    filterMode: -1
+    filterMode: 0
     aniso: 1
     mipBias: -1
     wrapMode: 1
@@ -35,7 +35,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 200
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings:
@@ -45,77 +45,77 @@ TextureImporter:
     compressionQuality: 50
   spriteSheet:
     sprites:
-    - name: Sprites_0
+    - name: Tall Box
       rect:
         serializedVersion: 2
-        x: 25
-        y: 675
-        width: 50
+        x: 50
+        y: 1350
+        width: 100
+        height: 600
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Flat Box
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 1850
+        width: 600
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Triangle
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 1350
+        width: 600
+        height: 600
+      alignment: 6
+      pivot: {x: 0, y: 0}
+    - name: Ring
+      rect:
+        serializedVersion: 2
+        x: 1741
+        y: 1739
+        width: 220
+        height: 220
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Box
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 1600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Big Box
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 1500
+        width: 300
         height: 300
       alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: Sprites_1
+      pivot: {x: .5, y: .5}
+    - name: Small Box
       rect:
         serializedVersion: 2
-        x: 100
-        y: 925
-        width: 300
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: Sprites_2
-      rect:
-        serializedVersion: 2
-        x: 425
-        y: 675
-        width: 300
-        height: 300
-      alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: Sprites_3
-      rect:
-        serializedVersion: 2
-        x: 870
-        y: 869
-        width: 111
-        height: 111
-      alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: Sprites_4
-      rect:
-        serializedVersion: 2
-        x: 100
-        y: 800
+        x: 200
+        y: 1450
         width: 100
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: Sprites_5
+      pivot: {x: .5, y: .5}
+    - name: Spikes
       rect:
         serializedVersion: 2
-        x: 250
-        y: 750
-        width: 150
-        height: 150
+        x: 50
+        y: 1140
+        width: 600
+        height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: Sprites_6
-      rect:
-        serializedVersion: 2
-        x: 100
-        y: 725
-        width: 50
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: Sprites_7
-      rect:
-        serializedVersion: 2
-        x: 25
-        y: 570
-        width: 300
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
   spritePackingTag: 
   userData: 

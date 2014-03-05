@@ -28,8 +28,24 @@ public class PlayerControll : MonoBehaviour
 	SpriteRenderer spriteRenderer;
 	Color playerDefaultColor;
 
+	Vector2 respawnPosition;
+
 	public Health health;
 
+	
+	public virtual bool TouchExit 
+	{
+		get {
+			if( Input.touchCount > 0 )
+			{
+				return Input.GetTouch(0).phase == TouchPhase.Ended;
+			} else {
+				return false;
+			}
+		} 
+	}
+
+	
 	void Start ()
 	{
 		state 	= GameState.Instance;
@@ -48,14 +64,10 @@ public class PlayerControll : MonoBehaviour
 		playerStarted 			= false;
 		rigidbody2D.isKinematic = true;
 
-		if(state.currentDifficulty == Difficulty.Expert) {
-			health = Health.Low;
-		}
-		else {
-			health = Health.Full;
-		}
+		respawnPosition = GameObject.FindGameObjectWithTag("Start").transform.position;
 
-//		maxSpeed = (int)GameState.Instance.currentDifficulty;
+		health = Health.Low;
+
 	}
 
 	void Update ()
@@ -85,14 +97,12 @@ public class PlayerControll : MonoBehaviour
 			float lerp = Mathf.PingPong(Time.time, 0.2f) / 0.2f;
 			spriteRenderer.color = Color.Lerp(Color.magenta, Color.yellow, lerp);
 		}
-	}
 
-	void FixedUpdate ()
-	{
 		rigidbody2D.velocity = Vector2.ClampMagnitude(rigidbody2D.velocity, maxSpeed);
 	}
-
-	void StopBeingHurt(){
+	
+	void StopBeingHurt()
+	{
 		isHurt = false;
 		spriteRenderer.color = playerDefaultColor;
 	}
@@ -107,18 +117,6 @@ public class PlayerControll : MonoBehaviour
 	{
 		Debug.Log("OnHitExit()");
 		hitSet = false;
-	}
-	
-	public virtual bool TouchExit 
-	{
-		get {
-			if( Input.touchCount > 0 )
-			{
-				return Input.GetTouch(0).phase == TouchPhase.Ended;
-			} else {
-				return false;
-			}
-		} 
 	}
 
 	void OnCollisionEnter2D (Collision2D coll)
@@ -138,16 +136,6 @@ public class PlayerControll : MonoBehaviour
 		}
 	}
 
-	void OnTriggerStay2D(Collider2D other)
-	{
-
-		Debug.Log("in da trigger " + other.transform.name);
-
-		if(other.transform.CompareTag("Finish")){
-			Finish();
-		}
-	}
-
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		
@@ -155,6 +143,10 @@ public class PlayerControll : MonoBehaviour
 		
 		if(other.transform.CompareTag("Finish")){
 			Finish();
+		}
+
+		if(other.transform.CompareTag("Respawn")){
+			respawnPosition = other.transform.position;
 		}
 	}
 
@@ -172,11 +164,27 @@ public class PlayerControll : MonoBehaviour
 
 	void Die()
 	{
-		isDead = true;
+		iMustDie 				= false;
+		playerStarted 			= false;
+		rigidbody2D.isKinematic = true;
+
 		Instantiate(exposionPrefab, transform.position, Quaternion.identity);
-		Debug.Log("died!");
+
 		manager.SendMessage("OnPlayerDied", SendMessageOptions.DontRequireReceiver);
-		Destroy(gameObject);
+
+		gameObject.SetActive(false);
+		Invoke("Respawn", 1);
+	}
+
+	void Respawn()
+	{
+		transform.position = respawnPosition;
+		health = Health.Low;
+		isDead = false;
+		gameObject.SetActive(true);
+		//manager.SendMessage("OnPlayerStarted", SendMessageOptions.DontRequireReceiver);
+
+
 	}
 
 	void Finish()

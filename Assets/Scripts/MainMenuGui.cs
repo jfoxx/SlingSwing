@@ -63,7 +63,7 @@ public class MainMenuGui : MonoBehaviour
 
 		GUILayout.Space(space);
 		
-		if (GUILayout.Button ("Bonce!"))
+		if (GUILayout.Button ("Level 4"))
 		{
 			Debug.Log ("Moving to level 2");
 			GameState.Instance.SetLevel("level4");

@@ -66,14 +66,14 @@ public class GameManager : MonoBehaviour {
 	void OnPlayerStarted()
 	{
 		playerStarted = true;
+		playerDead = false;
 	}
 
 	void OnPlayerDied ()
 	{
 		playerDead = true;
-		Invoke("Respawn", 1f);
 	}
-
+	
 	void OnPlayerFinished ()
 	{
 		playerFinished = true;
